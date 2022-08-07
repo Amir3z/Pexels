@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/exploreFragment">
+
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.amirez.pexels.ui.explore.ExploreFragment"
+        android:label="PhotosFragment"
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/action_exploreFragment_to_largePhotoFragment"
+            app:destination="@id/largePhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionsFragment"
+        android:name="com.amirez.pexels.ui.collections.CollectionsFragment"
+        android:label="VideosFragment"
+        tools:layout="@layout/fragment_collections"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.amirez.pexels.ui.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_largePhotoFragment"
+            app:destination="@id/largePhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.amirez.pexels.ui.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/largePhotoFragment"
+        android:name="com.amirez.pexels.ui.explore.LargePhotoFragment"
+        android:label="LargePhotoFragment"
+        tools:layout="@layout/fragment_large_photo">
+        <argument
+            android:name="photo"
+            app:argType="com.amirez.pexels.model.PhotosData$Photo" />
+    </fragment>
+</navigation>
