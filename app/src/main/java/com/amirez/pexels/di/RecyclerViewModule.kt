@@ -1,9 +1,7 @@
 package com.amirez.pexels.di
 
-import com.amirez.pexels.ui.collections.CollectionAdapter
-import com.amirez.pexels.ui.collections.CollectionsFragment
-import com.amirez.pexels.ui.explore.PhotoAdapter
-import com.amirez.pexels.ui.explore.ExploreFragment
+import com.amirez.pexels.ui.explore.*
+import com.amirez.pexels.utils.collectionsData
 import com.bumptech.glide.RequestManager
 import dagger.Module
 import dagger.Provides
@@ -17,30 +15,25 @@ object RecyclerViewModule {
 
     @Provides
     @Singleton
-    fun providePhotoEvent(): PhotoAdapter.PhotoEvent {
+    fun provideExploreClickEvents(): ExploreClickEvents {
         return ExploreFragment()
     }
 
     @Provides
     fun providePhotoAdapter(
         requestManager: RequestManager,
-        photoEvent: PhotoAdapter.PhotoEvent,
+        clickEvent: ExploreClickEvents
     ): PhotoAdapter {
-        return PhotoAdapter(requestManager, photoEvent)
+        return PhotoAdapter(requestManager, clickEvent)
     }
 
     @Provides
     @Singleton
-    fun provideCollectionEvent(): CollectionAdapter.CollectionEvent {
-        return CollectionsFragment()
-    }
-
-    @Singleton
-    @Provides
     fun provideCollectionAdapter(
-        collectionEvent: CollectionAdapter.CollectionEvent,
-    ): CollectionAdapter {
-        return CollectionAdapter(collectionEvent)
+        requestManager: RequestManager,
+        clickEvent: ExploreClickEvents
+    ):CollectionAdapter{
+        return CollectionAdapter(requestManager, clickEvent)
     }
 
 }

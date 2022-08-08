@@ -1,7 +1,9 @@
 package com.amirez.pexels.di
 
+import android.app.Application
 import com.amirez.pexels.model.network.ApiService
-import com.amirez.pexels.utils.PEXELS_IMAGE_BASE_URL
+import com.amirez.pexels.utils.NetworkChecker
+import com.amirez.pexels.utils.PEXELS_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,10 +20,16 @@ object NetworkModule {
     @Singleton
     fun provideApiService(): ApiService {
         return Retrofit.Builder()
-            .baseUrl(PEXELS_IMAGE_BASE_URL)
+            .baseUrl(PEXELS_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkChecker(application: Application): NetworkChecker {
+        return NetworkChecker(application.applicationContext)
     }
 
 }

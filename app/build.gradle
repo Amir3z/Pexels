@@ -65,8 +65,6 @@ dependencies {
 
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-
-
     implementation 'androidx.activity:activity-ktx:1.5.1'
 
     // network & serialization
@@ -91,4 +89,7 @@ dependencies {
     //Swipe refresh:
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
+    //Image Slider:
+//    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'me.relex:circleindicator:2.1.6'
 }

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <EditText
             android:id="@+id/et_search"
             android:layout_margin="12dp"
@@ -20,39 +23,45 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             app:layout_scrollFlags="scroll|enterAlways" />
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_searched"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="6dp"
-                android:scrollbars="vertical" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_load_more"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="12dp"
-                android:text="More"
-                android:textAllCaps="false"
-                android:visibility="gone" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_searched"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="6dp"
+                    android:scrollbars="vertical" />
 
-    </androidx.core.widget.NestedScrollView>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_load_more"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="More"
+                    android:textAllCaps="false"
+                    android:visibility="gone" />
 
+            </LinearLayout>
 
-</LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layout_no_internet"
+        layout="@layout/layout_no_internet"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="gone"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

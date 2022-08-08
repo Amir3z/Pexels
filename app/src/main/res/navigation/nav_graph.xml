@@ -15,11 +15,6 @@
             app:destination="@id/largePhotoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/collectionsFragment"
-        android:name="com.amirez.pexels.ui.collections.CollectionsFragment"
-        android:label="VideosFragment"
-        tools:layout="@layout/fragment_collections"/>
-    <fragment
         android:id="@+id/searchFragment"
         android:name="com.amirez.pexels.ui.SearchFragment"
         android:label="SearchFragment"

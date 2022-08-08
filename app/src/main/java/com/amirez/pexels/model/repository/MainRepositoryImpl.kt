@@ -1,6 +1,5 @@
 package com.amirez.pexels.model.repository
 
-import com.amirez.pexels.model.CollectionsData
 import com.amirez.pexels.model.network.ApiService
 import com.amirez.pexels.model.PhotosData
 import retrofit2.Response
@@ -16,10 +15,6 @@ class MainRepositoryImpl @Inject constructor(
 
     override suspend fun requestSearchedPhotos(searchKey: String, page: Int): Response<PhotosData> {
         return apiService.requestSearchedPhotos(searchKey, page)
-    }
-
-    override suspend fun requestCollections(page: Int): Response<CollectionsData> {
-        return apiService.requestCollections(page)
     }
 
 }

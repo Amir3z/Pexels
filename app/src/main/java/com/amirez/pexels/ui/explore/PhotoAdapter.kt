@@ -11,7 +11,7 @@ import com.bumptech.glide.RequestManager
 
 class PhotoAdapter(
     private val glide: RequestManager,
-    private val photoEvent: PhotoEvent,
+    private val clickEvent: ExploreClickEvents,
 ) :
     RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
@@ -21,11 +21,11 @@ class PhotoAdapter(
     inner class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setOnClicks(photo: PhotosData.Photo, position: Int) {
             itemView.setOnClickListener {
-                photoEvent.onPhotoClick(photo, position)
+                clickEvent.onPhotoClick(photo, position)
             }
 
             itemView.setOnLongClickListener {
-                photoEvent.onPhotoLongClick(photo)
+                clickEvent.onPhotoLongClick(photo)
                 true
             }
         }
@@ -74,10 +74,5 @@ class PhotoAdapter(
             data.clear()
             notifyItemRangeRemoved(0, count)
         }
-    }
-
-    interface PhotoEvent {
-        fun onPhotoClick(photo: PhotosData.Photo, position: Int)
-        fun onPhotoLongClick(photo: PhotosData.Photo)
     }
 }
