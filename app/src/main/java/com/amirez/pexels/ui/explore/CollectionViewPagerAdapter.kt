@@ -1,20 +1,18 @@
-package com.amirez.pexels.ui.explore
+package com.amirez.pexels.ui.explore.collection
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.amirez.pexels.R
 import com.amirez.pexels.databinding.ItemCollectionBinding
 import com.amirez.pexels.model.CollectionsData
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.ui.explore.ClickEvents
 import com.bumptech.glide.RequestManager
 
-class CollectionAdapter(
+class CollectionViewPagerAdapter(
     private val glide: RequestManager,
-    private val clickEvent: ExploreClickEvents
-) : RecyclerView.Adapter<CollectionAdapter.CollectionViewHolder>() {
+    private val clickEvent: ClickEvents
+) : RecyclerView.Adapter<CollectionViewPagerAdapter.CollectionViewHolder>() {
     private lateinit var binding: ItemCollectionBinding
     private val data = arrayListOf<CollectionsData>()
 

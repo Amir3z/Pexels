@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import com.amirez.pexels.databinding.FragmentLargePhotoBinding
 import com.amirez.pexels.model.PhotosData
 import com.bumptech.glide.RequestManager
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LargePhotoFragment: Fragment() {
     private lateinit var binding: FragmentLargePhotoBinding
     private lateinit var photo: PhotosData.Photo

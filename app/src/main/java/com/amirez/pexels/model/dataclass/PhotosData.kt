@@ -8,9 +8,7 @@ import android.os.Parcelable
 @Parcelize
 data class PhotosData(
     @SerializedName("photos")
-    val photos: List<Photo>,
-    @SerializedName("total_results")
-    val totalResults: Int
+    val photos: List<Photo>
 ) : Parcelable {
     @Parcelize
     data class Photo(

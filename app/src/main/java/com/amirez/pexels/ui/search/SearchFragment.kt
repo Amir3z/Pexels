@@ -6,22 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.amirez.pexels.databinding.FragmentSearchBinding
+import com.amirez.pexels.model.CollectionsData
 import com.amirez.pexels.model.PhotosData
-import com.amirez.pexels.presenter.MainViewModel
+import com.amirez.pexels.presenter.SearchViewModel
 import com.amirez.pexels.ui.explore.PhotoAdapter
 import com.amirez.pexels.utils.isSearchKeyValid
+import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
-    private val viewModel: MainViewModel by activityViewModels()
+class SearchFragment : Fragment(), PhotoAdapter.ExploreClickEvents {
+    private val viewModel: SearchViewModel by viewModels()
+
+    private lateinit var adapter: PhotoAdapter
+
     @Inject
-    lateinit var adapter: PhotoAdapter
+    lateinit var glideInstance: RequestManager
 
     companion object {
         private var currentPage = 1
@@ -42,7 +48,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView()
-        observeOnLiveData()
+        observeLiveData()
 
         binding.etSearch.addTextChangedListener {
             currentPage = 1
@@ -69,15 +75,16 @@ class SearchFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
+        adapter = PhotoAdapter(glideInstance,this)
         binding.rvSearched.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.rvSearched.adapter = adapter
     }
 
-    private fun observeOnLiveData() {
+    private fun observeLiveData() {
         viewModel.searchedPhotosLiveData.observe(requireActivity()) {
-            if(it.photos.isNotEmpty()) {
-                showPhotos(it.photos)
+            if(it.isNotEmpty()) {
+                showPhotos(it)
             }
         }
 
@@ -94,5 +101,16 @@ class SearchFragment : Fragment() {
             binding.btnLoadMore.visibility = View.VISIBLE
         }
 
+    }
+
+    override fun onPhotoClick(photo: PhotosData.Photo) {
+        findNavController().navigate(
+            SearchFragmentDirections.actionSearchFragmentToLargePhotoFragment(photo)
+        )
+    }
+
+
+    override fun onCollectionClick(collectionsData: CollectionsData) {
+        TODO("Not yet implemented")
     }
 }

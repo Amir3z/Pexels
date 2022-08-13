@@ -5,9 +5,9 @@ import com.amirez.pexels.model.PhotosData
 import retrofit2.Response
 import javax.inject.Inject
 
-class MainRepositoryImpl @Inject constructor(
+class ExploreRepositoryImpl @Inject constructor(
     private val apiService: ApiService
-) : MainRepository {
+) : ExploreRepository {
 
     override suspend fun requestPagePhotos(page: Int): Response<PhotosData> {
         return apiService.requestPagePhotos(page)
