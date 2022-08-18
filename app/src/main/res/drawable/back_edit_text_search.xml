@@ -4,6 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners android:radius="6dp"/>
-    <solid android:color="#E1E1E1"/>
+    <solid android:color="?attr/et_search_back"/>
 
 </shape>

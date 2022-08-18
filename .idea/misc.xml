@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1345" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/drawable/back_accounts.xml" value="0.1" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/drawable/back_edit_text_search.xml" value="0.1" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/drawable/back_image_not_loaded.xml" value="0.1" />
@@ -12,13 +13,14 @@
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/drawable/image_gradiant.xml" value="0.1" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/drawable/white_raduis.xml" value="0.1" />
-        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/activity_main.xml" value="0.1513467293715263" />
+        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_collection.xml" value="0.22" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_collections.xml" value="0.22" />
-        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_explore.xml" value="0.1513467293715263" />
+        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_explore.xml" value="0.22" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_full_screen_photo.xml" value="0.1513467293715263" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_large_photo.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_photos.xml" value="0.1513467293715263" />
-        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_search.xml" value="0.22" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/fragment_videos.xml" value="0.1513467293715263" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/item_collection.xml" value="0.16666666666666666" />
@@ -27,6 +29,7 @@
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/layout_collections_notice.xml" value="0.1513467293715263" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/layout/layout_no_internet.xml" value="0.15049166310389056" />
         <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/menu/menu_bottom_nav.xml" value="0.1513467293715263" />
+        <entry key="..\:/Users/areza/AndroidStudioProjects/Pexels/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1345" />
       </map>
     </option>
   </component>

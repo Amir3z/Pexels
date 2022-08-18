@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="2dp">
+    android:paddingBottom="4dp">
 
     <ImageView
         android:id="@+id/img_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="100dp"
-        android:layout_marginHorizontal="1dp"
+        android:layout_marginHorizontal="2dp"
         android:scaleType="center"
         android:src="@drawable/back_image_not_loaded"
         app:layout_constraintEnd_toEndOf="parent"

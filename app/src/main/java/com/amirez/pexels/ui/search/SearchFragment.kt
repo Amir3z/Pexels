@@ -1,4 +1,4 @@
-package com.amirez.pexels.ui
+package com.amirez.pexels.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.amirez.pexels.databinding.FragmentSearchBinding
-import com.amirez.pexels.model.CollectionsData
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.model.dataclass.PhotosData
+import com.amirez.pexels.model.dataclass.SafeArgsPhoto
 import com.amirez.pexels.presenter.SearchViewModel
-import com.amirez.pexels.ui.explore.PhotoAdapter
 import com.amirez.pexels.utils.isSearchKeyValid
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,18 +20,13 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), PhotoAdapter.ExploreClickEvents {
+class SearchFragment : Fragment(), SearchAdapter.SearchClickEvents {
     private val viewModel: SearchViewModel by viewModels()
 
-    private lateinit var adapter: PhotoAdapter
+    private lateinit var adapter: SearchAdapter
 
     @Inject
     lateinit var glideInstance: RequestManager
-
-    companion object {
-        private var currentPage = 1
-        private var isShowButtonClicked = false
-    }
 
     private lateinit var binding: FragmentSearchBinding
     override fun onCreateView(
@@ -51,22 +45,25 @@ class SearchFragment : Fragment(), PhotoAdapter.ExploreClickEvents {
         observeLiveData()
 
         binding.etSearch.addTextChangedListener {
-            currentPage = 1
-            isShowButtonClicked = false
+            viewModel.changeTypingStatus(true)
             getPhotos(it.toString())
         }
 
         binding.btnLoadMore.setOnClickListener {
-            currentPage++
-            isShowButtonClicked = true
+            viewModel.changeTypingStatus(false)
             getPhotos(binding.etSearch.text.toString())
         }
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.saveAllOpenPagesInLiveData()
+    }
+
     private fun getPhotos(searchKey: String) {
         if(isSearchKeyValid()) {
-            viewModel.getPhotosBySearchKey(searchKey, currentPage)
+            viewModel.getPhotos(searchKey)
         }
         else {
             adapter.clearAllData()
@@ -75,7 +72,7 @@ class SearchFragment : Fragment(), PhotoAdapter.ExploreClickEvents {
     }
 
     private fun initRecyclerView() {
-        adapter = PhotoAdapter(glideInstance,this)
+        adapter = SearchAdapter(glideInstance,this)
         binding.rvSearched.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.rvSearched.adapter = adapter
@@ -91,26 +88,38 @@ class SearchFragment : Fragment(), PhotoAdapter.ExploreClickEvents {
         viewModel.errorsLiveData.observe(requireActivity()) {
 
         }
+
+        viewModel.isConnected.observe(requireActivity()) { isConnected ->
+            if(isConnected){
+                binding.layoutNoInternet.root.visibility = View.GONE
+            } else{
+                binding.layoutNoInternet.root.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun showPhotos(photos: List<PhotosData.Photo>) {
-        if(isShowButtonClicked) {
-            adapter.setData(photos)
-        } else {
+        if(viewModel.isTyping) {
             adapter.clearAndSetNewData(photos)
             binding.btnLoadMore.visibility = View.VISIBLE
+        } else {
+            adapter.setData(photos)
         }
 
     }
 
     override fun onPhotoClick(photo: PhotosData.Photo) {
+        val data = SafeArgsPhoto(
+            photo.photographer,
+            photo.alt,
+            photo.id.toString(),
+            photo.src.large2x,
+            photo.url,
+            photo.avgColor
+        )
         findNavController().navigate(
-            SearchFragmentDirections.actionSearchFragmentToLargePhotoFragment(photo)
+            SearchFragmentDirections.actionSearchFragmentToLargePhotoFragment(data)
         )
     }
 
-
-    override fun onCollectionClick(collectionsData: CollectionsData) {
-        TODO("Not yet implemented")
-    }
 }

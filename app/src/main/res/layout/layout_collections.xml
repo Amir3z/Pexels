@@ -1,55 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Favorite collections"
-        android:textColor="@color/text_dark"
-        android:textSize="28sp" />
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="vertical"
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_gallery" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:text="Favorite collections"
+            android:textColor="?attr/text_color_dark"
+            android:textSize="28sp" />
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_collections"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="250dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_collections"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <!--            <me.relex.circleindicator.CircleIndicator3-->
+        <!--                android:id="@+id/circleIndicator3"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="48dp"-->
+        <!--                app:ci_animator="@anim/scale_with_alpha"-->
+        <!--                app:ci_animator_reverse="@anim/scale_with_alpha"-->
+        <!--                app:ci_drawable="@drawable/white_radius"-->
+        <!--                app:ci_drawable_unselected="@drawable/white_radius"-->
+        <!--                app:ci_gravity="center"-->
+        <!--                app:ci_height="5dp"-->
+        <!--                app:ci_margin="5dp"-->
+        <!--                app:ci_orientation="horizontal"-->
+        <!--                app:ci_width="5dp"-->
+        <!--                app:layout_constraintBottom_toBottomOf="@+id/vp_collections"-->
+        <!--                app:layout_constraintEnd_toEndOf="@+id/vp_collections"-->
+        <!--                app:layout_constraintStart_toStartOf="@+id/vp_collections" />-->
 
-<!--            <me.relex.circleindicator.CircleIndicator3-->
-<!--                android:id="@+id/circleIndicator3"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="48dp"-->
-<!--                app:ci_animator="@anim/scale_with_alpha"-->
-<!--                app:ci_animator_reverse="@anim/scale_with_alpha"-->
-<!--                app:ci_drawable="@drawable/white_radius"-->
-<!--                app:ci_drawable_unselected="@drawable/white_radius"-->
-<!--                app:ci_gravity="center"-->
-<!--                app:ci_height="5dp"-->
-<!--                app:ci_margin="5dp"-->
-<!--                app:ci_orientation="horizontal"-->
-<!--                app:ci_width="5dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/vp_collections"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/vp_collections"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/vp_collections" />-->
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

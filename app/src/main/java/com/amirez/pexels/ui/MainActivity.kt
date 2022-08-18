@@ -7,17 +7,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.amirez.pexels.R
 import com.amirez.pexels.databinding.ActivityMainBinding
-import com.amirez.pexels.presenter.MainViewModel
 import com.amirez.pexels.utils.NetworkChecker
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(){
-    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +23,6 @@ class MainActivity : AppCompatActivity(){
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bnvMain.setupWithNavController(navController)
-
-
-
 
     }
 }

@@ -1,4 +1,4 @@
-package com.amirez.pexels.model
+package com.amirez.pexels.model.dataclass
 
 
 import com.google.gson.annotations.SerializedName

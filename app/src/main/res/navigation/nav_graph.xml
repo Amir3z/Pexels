@@ -13,10 +13,13 @@
         <action
             android:id="@+id/action_exploreFragment_to_largePhotoFragment"
             app:destination="@id/largePhotoFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_collectionFragment"
+            app:destination="@id/collectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.amirez.pexels.ui.SearchFragment"
+        android:name="com.amirez.pexels.ui.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
         <action
@@ -30,11 +33,23 @@
         tools:layout="@layout/fragment_profile"/>
     <fragment
         android:id="@+id/largePhotoFragment"
-        android:name="com.amirez.pexels.ui.explore.LargePhotoFragment"
+        android:name="com.amirez.pexels.ui.LargePhotoFragment"
         android:label="LargePhotoFragment"
         tools:layout="@layout/fragment_large_photo">
         <argument
             android:name="photo"
-            app:argType="com.amirez.pexels.model.PhotosData$Photo" />
+            app:argType="com.amirez.pexels.model.dataclass.SafeArgsPhoto" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.amirez.pexels.ui.collection.CollectionFragment"
+        android:label="CollectionFragment"
+        tools:layout="@layout/fragment_collection">
+        <action
+            android:id="@+id/action_collectionFragment_to_largePhotoFragment"
+            app:destination="@id/largePhotoFragment" />
+        <argument
+            android:name="collection"
+            app:argType="string" />
     </fragment>
 </navigation>

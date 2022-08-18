@@ -1,20 +1,15 @@
 package com.amirez.pexels.model.repository
 
 import com.amirez.pexels.model.network.ApiService
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.model.dataclass.PhotosData
 import retrofit2.Response
-import javax.inject.Inject
 
-class ExploreRepositoryImpl @Inject constructor(
+class ExploreRepository (
     private val apiService: ApiService
-) : ExploreRepository {
+) {
 
-    override suspend fun requestPagePhotos(page: Int): Response<PhotosData> {
+    suspend fun requestPagePhotos(page: Int): Response<PhotosData> {
         return apiService.requestPagePhotos(page)
-    }
-
-    override suspend fun requestSearchedPhotos(searchKey: String, page: Int): Response<PhotosData> {
-        return apiService.requestSearchedPhotos(searchKey, page)
     }
 
 }

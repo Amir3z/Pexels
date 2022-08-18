@@ -1,12 +1,12 @@
 package com.amirez.pexels.ui.explore
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.amirez.pexels.databinding.ItemPhotoBinding
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.model.dataclass.CollectionsData
+import com.amirez.pexels.model.dataclass.PhotosData
 import com.bumptech.glide.RequestManager
 
 class PhotoAdapter(
@@ -19,14 +19,9 @@ class PhotoAdapter(
     private val data = arrayListOf<PhotosData.Photo>()
 
     inner class PhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setOnClicks(photo: PhotosData.Photo, position: Int) {
+        fun setOnClicks(photo: PhotosData.Photo) {
             itemView.setOnClickListener {
-                clickEvent.onPhotoClick(photo, position)
-            }
-
-            itemView.setOnLongClickListener {
-                clickEvent.onPhotoLongClick(photo)
-                true
+                clickEvent.onPhotoClick(photo)
             }
         }
     }
@@ -41,38 +36,23 @@ class PhotoAdapter(
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photo = data[position]
-        bindViews(photo)
-        holder.setOnClicks(photo, position)
+
+        glide.load(photo.src.medium)
+            .into(binding.imgItem)
+
+        holder.setOnClicks(photo)
     }
 
     override fun getItemCount(): Int = data.size
 
-    private fun bindViews(photo: PhotosData.Photo) {
-        glide.load(photo.src.medium)
-            .into(binding.imgItem)
-    }
-
     fun setData(listOfPhotos: List<PhotosData.Photo>) {
         val position = data.size
         data.addAll(listOfPhotos)
-        notifyItemRangeInserted(position, listOfPhotos.size)
+        notifyItemRangeInserted(position,listOfPhotos.size)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun clearAndSetNewData(listOfPhotos: List<PhotosData.Photo>) {
-//        val position = data.size
-        data.clear()
-        data.addAll(listOfPhotos)
-//        notifyItemRangeRemoved(0, position)
-//        notifyItemRangeInserted(0, listOfPhotos.size)
-        notifyDataSetChanged()
-    }
-
-    fun clearAllData() {
-        if(data.isNotEmpty()) {
-            val count = data.size
-            data.clear()
-            notifyItemRangeRemoved(0, count)
-        }
+    interface ExploreClickEvents {
+        fun onPhotoClick(photo: PhotosData.Photo)
+        fun onCollectionClick(collectionsData: CollectionsData)
     }
 }

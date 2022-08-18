@@ -1,7 +1,7 @@
 package com.amirez.pexels.model.network
 
-import com.amirez.pexels.model.Collection
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.model.dataclass.Collection
+import com.amirez.pexels.model.dataclass.PhotosData
 import com.amirez.pexels.utils.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
@@ -28,7 +28,7 @@ interface ApiService {
     ): Response<PhotosData>
 
     @Headers("Authorization: $API_KEY")
-    @GET("collection/{id}")
+    @GET("collections/{id}")
     suspend fun requestCollection(
         @Path("id") id: String,
         @Query("page") page: Int = 1,

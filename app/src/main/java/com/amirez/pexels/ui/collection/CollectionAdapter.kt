@@ -1,12 +1,11 @@
-package com.amirez.pexels.ui
+package com.amirez.pexels.ui.collection
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.amirez.pexels.databinding.ItemPhotoBinding
-import com.amirez.pexels.model.Collection
+import com.amirez.pexels.model.dataclass.Collection
 import com.bumptech.glide.RequestManager
 
 class CollectionAdapter(
@@ -44,13 +43,10 @@ class CollectionAdapter(
 
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setData(listOfPhotos: List<Collection.Media>) {
-        val newData = arrayListOf<Collection.Media>()
-        newData.addAll(data)
-        newData.addAll(listOfPhotos)
-        data.addAll(newData.distinct())
-        notifyDataSetChanged()
+        val position = data.size
+        data.addAll(listOfPhotos)
+        notifyItemRangeInserted(position, listOfPhotos.size)
     }
 
     override fun getItemCount(): Int  = data.size
