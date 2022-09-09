@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedCornersImageView" />
+            app:shapeAppearanceOverlay="@style/SmallRoundedCorners" />
 
         <TextView
             android:id="@+id/tv_username_profile"

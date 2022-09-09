@@ -19,6 +19,7 @@
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="12dp"
             android:hint="Search"
+            android:maxLines="1"
             android:imeOptions="actionSearch"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
@@ -56,6 +57,15 @@
 
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:trackCornerRadius="4dp"/>
 
     <include
         android:id="@+id/layout_no_internet"

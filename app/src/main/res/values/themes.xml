@@ -21,7 +21,4 @@
 
     </style>
 
-    <style name="RoundedCornersImageView" parent="">
-        <item name="cornerSize">24dp</item>
-    </style>
 </resources>

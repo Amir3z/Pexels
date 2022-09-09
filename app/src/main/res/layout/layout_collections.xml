@@ -49,22 +49,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--            <me.relex.circleindicator.CircleIndicator3-->
-        <!--                android:id="@+id/circleIndicator3"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="48dp"-->
-        <!--                app:ci_animator="@anim/scale_with_alpha"-->
-        <!--                app:ci_animator_reverse="@anim/scale_with_alpha"-->
-        <!--                app:ci_drawable="@drawable/white_radius"-->
-        <!--                app:ci_drawable_unselected="@drawable/white_radius"-->
-        <!--                app:ci_gravity="center"-->
-        <!--                app:ci_height="5dp"-->
-        <!--                app:ci_margin="5dp"-->
-        <!--                app:ci_orientation="horizontal"-->
-        <!--                app:ci_width="5dp"-->
-        <!--                app:layout_constraintBottom_toBottomOf="@+id/vp_collections"-->
-        <!--                app:layout_constraintEnd_toEndOf="@+id/vp_collections"-->
-        <!--                app:layout_constraintStart_toStartOf="@+id/vp_collections" />-->
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:src="@drawable/back_dark_gradient"
+            app:layout_constraintBottom_toBottomOf="@+id/vp_collections"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_height="wrap_content"
+            app:spi_dotColor="@color/dot_color_light"
+            app:spi_dotSelectedColor="@color/dot_color_dark"
+            app:layout_constraintBottom_toBottomOf="@id/vp_collections"
+            app:layout_constraintEnd_toEndOf="@+id/vp_collections"
+            app:layout_constraintStart_toStartOf="@+id/vp_collections" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

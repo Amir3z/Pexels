@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SmallRoundedCorners" parent="">
+        <item name="cornerSize">12dp</item>
+    </style>
+    <style name="MediumRoundedCorners" parent="">
+        <item name="cornerSize">18dp</item>
+    </style>
+    <style name="LargeRoundedCorners" parent="">
+        <item name="cornerSize">24dp</item>
+    </style>
+
+</resources>

@@ -1,9 +1,9 @@
 package com.amirez.pexels.di
 
 import com.amirez.pexels.model.network.ApiService
-import com.amirez.pexels.model.repository.CollectionRepository
-import com.amirez.pexels.model.repository.ExploreRepository
-import com.amirez.pexels.model.repository.SearchRepository
+import com.amirez.pexels.feature.collection.CollectionRepository
+import com.amirez.pexels.feature.explore.ExploreRepository
+import com.amirez.pexels.feature.search.SearchRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

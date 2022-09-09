@@ -8,6 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="yellow">#FFEE58</color>
+
+    <color name="dot_color_light">#DFDFDF</color>
+    <color name="dot_color_dark">#BEBEBE</color>
+
     <color name="primary_green_light">#8BC34A</color>
     <color name="primary_green_dark">#365A0C</color>
 

@@ -2,75 +2,91 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_photos"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <include
                 android:id="@+id/layout_viewpager"
-                layout="@layout/layout_collections"/>
+                layout="@layout/layout_collections" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginHorizontal="12dp"/>
+                android:layout_marginBottom="20dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="12dp">
+                android:layout_marginHorizontal="12dp"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_trending"/>
+                    android:src="@drawable/ic_trending" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Trending photos"
                     android:layout_marginStart="20dp"
+                    android:text="Trending photos"
                     android:textColor="?attr/text_color_dark"
-                    android:textSize="28sp"/>
+                    android:textSize="28sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_photos"
-                android:layout_marginTop="20dp"
-                android:paddingTop="2dp"
-                android:paddingHorizontal="8dp"
                 android:layout_width="match_parent"
-                tools:listitem="@layout/item_photo"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="8dp"
+                android:paddingTop="2dp"
+                tools:listitem="@layout/item_photo" />
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_load_more_photos"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_load_more_photos"
-                android:text="More"
-                android:visibility="gone"
-                android:textAllCaps="false"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="12dp"
-                android:layout_gravity="center"/>
+                android:text="More"
+                android:textAllCaps="false"
+                android:visibility="gone" />
         </LinearLayout>
+
+
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:trackCornerRadius="4dp"/>
+
+
     <include
         android:id="@+id/layout_no_internet"
         layout="@layout/layout_no_internet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

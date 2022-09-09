@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorSurface</item>
 
-        <item name="text_color_light">@color/text_light_night</item>
+        <item name="text_color_light">#DADADA</item>
         <item name="text_color_dark">@color/text_dark_night</item>
         <item name="et_search_back">#26282B</item>
         <item name="accounts_back">#111519</item>

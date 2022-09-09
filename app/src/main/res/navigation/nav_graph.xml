@@ -7,47 +7,47 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.amirez.pexels.ui.explore.ExploreFragment"
+        android:name="com.amirez.pexels.feature.explore.ExploreFragment"
         android:label="PhotosFragment"
         tools:layout="@layout/fragment_explore">
         <action
-            android:id="@+id/action_exploreFragment_to_largePhotoFragment"
-            app:destination="@id/largePhotoFragment" />
+            android:id="@+id/action_exploreFragment_to_photoDetailsFragment"
+            app:destination="@id/photoDetailsFragment" />
         <action
             android:id="@+id/action_exploreFragment_to_collectionFragment"
             app:destination="@id/collectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.amirez.pexels.ui.search.SearchFragment"
+        android:name="com.amirez.pexels.feature.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
         <action
-            android:id="@+id/action_searchFragment_to_largePhotoFragment"
-            app:destination="@id/largePhotoFragment" />
+            android:id="@+id/action_searchFragment_to_photoDetailsFragment"
+            app:destination="@id/photoDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.amirez.pexels.ui.ProfileFragment"
+        android:name="com.amirez.pexels.feature.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
     <fragment
-        android:id="@+id/largePhotoFragment"
-        android:name="com.amirez.pexels.ui.LargePhotoFragment"
+        android:id="@+id/photoDetailsFragment"
+        android:name="com.amirez.pexels.feature.PhotoDetailsFragment"
         android:label="LargePhotoFragment"
-        tools:layout="@layout/fragment_large_photo">
+        tools:layout="@layout/fragment_photo_details">
         <argument
             android:name="photo"
             app:argType="com.amirez.pexels.model.dataclass.SafeArgsPhoto" />
     </fragment>
     <fragment
         android:id="@+id/collectionFragment"
-        android:name="com.amirez.pexels.ui.collection.CollectionFragment"
+        android:name="com.amirez.pexels.feature.collection.CollectionFragment"
         android:label="CollectionFragment"
         tools:layout="@layout/fragment_collection">
         <action
-            android:id="@+id/action_collectionFragment_to_largePhotoFragment"
-            app:destination="@id/largePhotoFragment" />
+            android:id="@+id/action_collectionFragment_to_photoDetailsFragment"
+            app:destination="@id/photoDetailsFragment" />
         <argument
             android:name="collection"
             app:argType="string" />

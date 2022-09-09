@@ -1,9 +1,8 @@
 package com.amirez.pexels.model.network
 
-import com.amirez.pexels.model.dataclass.Collection
-import com.amirez.pexels.model.dataclass.PhotosData
+import com.amirez.pexels.model.Collection
+import com.amirez.pexels.model.PhotosData
 import com.amirez.pexels.utils.API_KEY
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -13,25 +12,25 @@ interface ApiService {
 
     @Headers("Authorization: $API_KEY")
     @GET("curated")
-    suspend fun requestPagePhotos(
+    suspend fun getPagePhotos(
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 30
-    ): Response<PhotosData>
+    ): PhotosData
 
 
     @Headers("Authorization: $API_KEY")
     @GET("search")
-    suspend fun requestSearchedPhotos(
+    suspend fun getSearchedPhotos(
         @Query("query") searchKey: String,
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 30
-    ): Response<PhotosData>
+    ): PhotosData
 
     @Headers("Authorization: $API_KEY")
     @GET("collections/{id}")
-    suspend fun requestCollection(
+    suspend fun getCollection(
         @Path("id") id: String,
         @Query("page") page: Int = 1,
         @Query("per_page") perPage: Int = 30
-    ):Response<Collection>
+    ): Collection
 }
