@@ -44,13 +44,11 @@ class SearchAdapter(
     fun setData(listOfPhotos: List<PhotosData.Photo>) {
         val position = data.size
         data.addAll(listOfPhotos)
-        notifyItemRangeInserted(position - 1, listOfPhotos.size)
+        notifyItemRangeInserted(position, listOfPhotos.size)
     }
 
     fun clearAndSetNewData(listOfPhotos: List<PhotosData.Photo>) {
-        val position = data.size
-        data.clear()
-        notifyItemRangeRemoved(0, position)
+        clearAllData()
         data.addAll(listOfPhotos)
         notifyItemRangeInserted(0, listOfPhotos.size)
     }
@@ -62,7 +60,6 @@ class SearchAdapter(
             notifyItemRangeRemoved(0, count)
         }
     }
-
 
     override fun getItemCount(): Int = data.size
 

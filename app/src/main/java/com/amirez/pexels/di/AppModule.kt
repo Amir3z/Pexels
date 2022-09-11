@@ -54,19 +54,28 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideExploreRepository(apiService: ApiService): ExploreRepository {
-        return ExploreRepositoryImpl(apiService)
+    fun provideExploreRepository(
+        apiService: ApiService,
+        networkChecker: NetworkChecker
+    ): ExploreRepository {
+        return ExploreRepositoryImpl(apiService, networkChecker)
     }
 
     @Singleton
     @Provides
-    fun provideSearchRepository(apiService: ApiService): SearchRepository {
-        return SearchRepositoryImpl(apiService)
+    fun provideSearchRepository(
+        apiService: ApiService,
+        networkChecker: NetworkChecker
+    ): SearchRepository {
+        return SearchRepositoryImpl(apiService, networkChecker)
     }
 
     @Singleton
     @Provides
-    fun provideCollectionRepository(apiService: ApiService): CollectionRepository {
-        return CollectionRepositoryImpl(apiService)
+    fun provideCollectionRepository(
+        apiService: ApiService,
+        networkChecker: NetworkChecker
+    ): CollectionRepository {
+        return CollectionRepositoryImpl(apiService, networkChecker)
     }
 }

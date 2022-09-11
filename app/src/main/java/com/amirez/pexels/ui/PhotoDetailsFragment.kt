@@ -1,5 +1,7 @@
 package com.amirez.pexels.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +33,12 @@ class PhotoDetailsFragment: Fragment() {
         photo = PhotoDetailsFragmentArgs.fromBundle(requireArguments()).photo
 
         initUI()
+
+        binding.btnOpen.setOnClickListener {
+            Intent(Intent.ACTION_VIEW, Uri.parse(photo.url)).also {
+                startActivity(it)
+            }
+        }
     }
 
     private fun initUI() {

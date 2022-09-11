@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amirez.pexels.data.Collection
 import com.amirez.pexels.data.PhotoState
+import com.amirez.pexels.data.repository.CollectionRepository
 import com.amirez.pexels.data.repository.CollectionRepositoryImpl
 import com.amirez.pexels.utils.NetworkChecker
 import com.amirez.pexels.utils.Resource
@@ -17,8 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CollectionViewModel @Inject constructor(
-    private val repository: CollectionRepositoryImpl,
-    private val networkChecker: NetworkChecker
+    private val repository: CollectionRepository
 ) : ViewModel() {
 
     private val _photoState = MutableLiveData<PhotoState<List<Collection.Media>>>(
@@ -42,10 +42,6 @@ class CollectionViewModel @Inject constructor(
     }
 
     fun getPhotos(id: String) {
-        if (!networkChecker.isConnected) {
-            UIEvent.ShowAlternativeView("Check your connection!")
-            return
-        }
         viewModelScope.launch {
             repository.getCollectionPhotos(id, page).onEach { event ->
                 when (event) {

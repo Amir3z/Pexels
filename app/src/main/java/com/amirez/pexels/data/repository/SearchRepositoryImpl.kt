@@ -2,6 +2,7 @@ package com.amirez.pexels.data.repository
 
 import com.amirez.pexels.data.PhotosData
 import com.amirez.pexels.data.network.ApiService
+import com.amirez.pexels.utils.NetworkChecker
 import com.amirez.pexels.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -10,10 +11,14 @@ import java.io.IOException
 
 class SearchRepositoryImpl(
     private val apiService: ApiService,
+    private val networkChecker: NetworkChecker
 ): SearchRepository {
 
     override fun getSearchedPhotos(searchKey: String, page: Int): Flow<Resource<PhotosData>> = flow {
         emit(Resource.Loading())
+
+        if(!networkChecker.isConnected)
+            emit(Resource.Failed(message = "Check your connection!"))
 
         try {
             val response = apiService.getSearchedPhotos(searchKey, page)

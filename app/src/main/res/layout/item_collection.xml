@@ -11,7 +11,12 @@
             android:id="@+id/img_collection"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/img_pfp"
+            android:src="@drawable/ic_launcher_background"
             android:scaleType="fitXY"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/back_dark_gradient"/>
 
 </com.google.android.material.card.MaterialCardView>

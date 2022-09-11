@@ -1,6 +1,8 @@
 package com.amirez.pexels.ui.search
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +30,7 @@ class SearchFragment : Fragment(), SearchAdapter.SearchClickEvents {
 
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var adapter: SearchAdapter
+
     @Inject
     lateinit var glideInstance: RequestManager
     private lateinit var binding: FragmentSearchBinding
@@ -47,9 +50,19 @@ class SearchFragment : Fragment(), SearchAdapter.SearchClickEvents {
         initRecyclerView()
         observeLiveData()
 
+        if(binding.etSearch.text.isBlank()) {
+            adapter.clearAllData()
+            binding.btnLoadMore.visibility = View.GONE
+        }
         binding.etSearch.addTextChangedListener {
-            viewModel.changeTypingStatus(true)
-            getPhotos(it.toString())
+            if (it.toString().isBlank()) {
+                viewModel.cancelPreviousSearchJob()
+                adapter.clearAllData()
+                binding.btnLoadMore.visibility = View.GONE
+            } else {
+                viewModel.changeTypingStatus(true)
+                getPhotos(it.toString())
+            }
         }
 
         binding.btnLoadMore.setOnClickListener {
@@ -65,17 +78,16 @@ class SearchFragment : Fragment(), SearchAdapter.SearchClickEvents {
     }
 
     private fun getPhotos(searchKey: String) {
-        if(isSearchKeyValid()) {
+        if (isSearchKeyValid()) {
             viewModel.getPhotos(searchKey)
-        }
-        else {
+        } else {
             adapter.clearAllData()
             binding.btnLoadMore.visibility = View.GONE
         }
     }
 
     private fun initRecyclerView() {
-        adapter = SearchAdapter(glideInstance,this)
+        adapter = SearchAdapter(glideInstance, this)
         binding.rvSearched.layoutManager =
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.rvSearched.adapter = adapter
@@ -117,7 +129,7 @@ class SearchFragment : Fragment(), SearchAdapter.SearchClickEvents {
     }
 
     private fun showPhotos(photos: List<PhotosData.Photo>) {
-        if(viewModel.isTyping) {
+        if (viewModel.isTyping) {
             adapter.clearAndSetNewData(photos)
             binding.btnLoadMore.visibility = View.VISIBLE
         } else {

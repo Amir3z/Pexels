@@ -20,6 +20,8 @@
             android:drawablePadding="12dp"
             android:hint="Search"
             android:maxLines="1"
+            android:maxLength="20"
+            android:inputType="text"
             android:imeOptions="actionSearch"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
@@ -38,7 +40,8 @@
                     android:id="@+id/rv_searched"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="6dp"
+                    android:paddingTop="8dp"
+                    android:paddingHorizontal="8dp"
                     android:scrollbars="vertical" />
 
                 <com.google.android.material.button.MaterialButton

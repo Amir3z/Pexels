@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginStart="20dp"
-            android:text="Favorite collections"
+            android:text="Collections"
             android:textColor="?attr/text_color_dark"
             android:textSize="28sp" />
 
@@ -49,13 +49,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:src="@drawable/back_dark_gradient"
-            app:layout_constraintBottom_toBottomOf="@+id/vp_collections"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
         <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
             android:id="@+id/indicator"
             android:layout_width="wrap_content"

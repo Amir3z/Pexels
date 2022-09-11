@@ -12,8 +12,7 @@ import com.bumptech.glide.RequestManager
 class PhotoAdapter(
     private val glide: RequestManager,
     private val clickEvent: ExploreClickEvents,
-) :
-    RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+) : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
     private lateinit var binding: ItemPhotoBinding
     private val data = arrayListOf<PhotosData.Photo>()
@@ -30,7 +29,8 @@ class PhotoAdapter(
         binding = ItemPhotoBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
-            false)
+            false
+        )
         return PhotoViewHolder(binding.root)
     }
 
@@ -48,7 +48,7 @@ class PhotoAdapter(
     fun setData(listOfPhotos: List<PhotosData.Photo>) {
         val position = data.size
         data.addAll(listOfPhotos)
-        notifyItemRangeInserted(position,listOfPhotos.size)
+        notifyItemRangeInserted(position, listOfPhotos.size)
     }
 
     interface ExploreClickEvents {

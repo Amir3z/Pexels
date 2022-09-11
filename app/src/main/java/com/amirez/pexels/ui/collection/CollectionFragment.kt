@@ -78,7 +78,8 @@ class CollectionFragment : Fragment(), CollectionAdapter.CollectionsClickEvents 
                 binding.progress.visibility = View.INVISIBLE
             }
             if (state.data.isNotEmpty()) {
-                adapter.setData(state.data)
+                val data = state.data.filterPhotos()
+                adapter.setData(data)
                 binding.btnLoadMore.visibility = View.VISIBLE
             }
         }

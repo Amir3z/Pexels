@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amirez.pexels.data.PhotoState
 import com.amirez.pexels.data.PhotosData
+import com.amirez.pexels.data.repository.SearchRepository
 import com.amirez.pexels.data.repository.SearchRepositoryImpl
 import com.amirez.pexels.utils.NetworkChecker
 import com.amirez.pexels.utils.Resource
@@ -19,8 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository: SearchRepositoryImpl,
-    private val networkChecker: NetworkChecker
+    private val repository: SearchRepository
 ) : ViewModel() {
 
     private val _photoState = MutableLiveData<PhotoState<List<PhotosData.Photo>>>(
@@ -55,6 +55,8 @@ class SearchViewModel @Inject constructor(
     fun getPhotos(query: String) {
         _searchQuery.value = query
         searchJob?.cancel()
+        if(query.isBlank())
+            return
         searchJob = viewModelScope.launch {
             delay(500L)
             repository.getSearchedPhotos(query, page).onEach { event ->
@@ -91,6 +93,16 @@ class SearchViewModel @Inject constructor(
                 }
             }.launchIn(this)
         }
+    }
+
+    fun cancelPreviousSearchJob() {
+        searchJob?.cancel()
+        _photoState.postValue(
+            photoState.value?.copy(
+                data = emptyList(),
+                isLoading = false
+            )
+        )
     }
 
     fun saveAllOpenPagesInLiveData() {

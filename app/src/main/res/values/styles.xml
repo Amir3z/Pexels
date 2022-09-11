@@ -2,10 +2,10 @@
 <resources>
 
     <style name="SmallRoundedCorners" parent="">
-        <item name="cornerSize">12dp</item>
+        <item name="cornerSize">6dp</item>
     </style>
     <style name="MediumRoundedCorners" parent="">
-        <item name="cornerSize">18dp</item>
+        <item name="cornerSize">12dp</item>
     </style>
     <style name="LargeRoundedCorners" parent="">
         <item name="cornerSize">24dp</item>

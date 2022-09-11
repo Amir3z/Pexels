@@ -38,7 +38,7 @@
         tools:layout="@layout/fragment_photo_details">
         <argument
             android:name="photo"
-            app:argType="com.amirez.pexels.model.dataclass.SafeArgsPhoto" />
+            app:argType="com.amirez.pexels.data.SafeArgsPhoto" />
     </fragment>
     <fragment
         android:id="@+id/collectionFragment"
