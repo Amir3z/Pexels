@@ -10,12 +10,8 @@ An image finder app powered by pexels API using the **MVVM architecture** and th
 
  <br>
 
-![explore screen](readmeAssets/img_scrn_explore.png)
+<img src="readmeAssets/img_scrn_explore.png" alt="explore screen" width="200">
 
- <br>
+<img src="readmeAssets/img_scrn_details.png" alt="details screen" width="200">
 
-![details screen](readmeAssets/img_scrn_details.png)
-
- <br>
-
-![search screen](readmeAssets/img_scrn_search.png)
+<img src="readmeAssets/img_scrn_search.png" alt="search screen" width="200">
