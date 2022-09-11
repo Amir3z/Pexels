@@ -1,6 +1,6 @@
 # Pexels
 
-An image finder app powered by pexels API using the **MVVM architecture** and the following libraries: 
+An image finder app powered by pexels API using the **MVVM architecture** and the following libraries:
 
 - Retrofit
 - Hilt dependency injection
