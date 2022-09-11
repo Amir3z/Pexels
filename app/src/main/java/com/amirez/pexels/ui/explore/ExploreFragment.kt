@@ -1,4 +1,4 @@
-package com.amirez.pexels.feature.explore
+package com.amirez.pexels.ui.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.amirez.pexels.databinding.FragmentExploreBinding
-import com.amirez.pexels.model.CollectionsData
-import com.amirez.pexels.model.PhotosData
-import com.amirez.pexels.model.SafeArgsPhoto
+import com.amirez.pexels.data.CollectionsData
+import com.amirez.pexels.data.PhotosData
+import com.amirez.pexels.data.SafeArgsPhoto
 import com.amirez.pexels.utils.UIEvent
 import com.amirez.pexels.utils.collectionsData
 import com.bumptech.glide.RequestManager

@@ -1,11 +1,11 @@
-package com.amirez.pexels.feature.explore
+package com.amirez.pexels.ui.explore
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.amirez.pexels.databinding.ItemCollectionBinding
-import com.amirez.pexels.model.CollectionsData
+import com.amirez.pexels.data.CollectionsData
 import com.bumptech.glide.RequestManager
 
 class CollectionViewPagerAdapter(

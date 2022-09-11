@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.amirez.pexels.feature.explore.ExploreFragment"
+        android:name="com.amirez.pexels.ui.explore.ExploreFragment"
         android:label="PhotosFragment"
         tools:layout="@layout/fragment_explore">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.amirez.pexels.feature.search.SearchFragment"
+        android:name="com.amirez.pexels.ui.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
         <action
@@ -28,12 +28,12 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.amirez.pexels.feature.ProfileFragment"
+        android:name="com.amirez.pexels.ui.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
     <fragment
         android:id="@+id/photoDetailsFragment"
-        android:name="com.amirez.pexels.feature.PhotoDetailsFragment"
+        android:name="com.amirez.pexels.ui.PhotoDetailsFragment"
         android:label="LargePhotoFragment"
         tools:layout="@layout/fragment_photo_details">
         <argument
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/collectionFragment"
-        android:name="com.amirez.pexels.feature.collection.CollectionFragment"
+        android:name="com.amirez.pexels.ui.collection.CollectionFragment"
         android:label="CollectionFragment"
         tools:layout="@layout/fragment_collection">
         <action

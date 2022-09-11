@@ -1,22 +1,22 @@
-package com.amirez.pexels.feature.search
+package com.amirez.pexels.data.repository
 
-import com.amirez.pexels.model.PhotosData
-import com.amirez.pexels.model.network.ApiService
+import com.amirez.pexels.data.network.ApiService
+import com.amirez.pexels.data.PhotosData
 import com.amirez.pexels.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 
-class SearchRepository(
-    private val apiService: ApiService,
-) {
+class ExploreRepositoryImpl (
+    private val apiService: ApiService
+): ExploreRepository {
 
-    fun getSearchedPhotos(searchKey: String, page: Int): Flow<Resource<PhotosData>> = flow {
+    override fun getPagePhotos(page: Int): Flow<Resource<PhotosData>> = flow {
         emit(Resource.Loading())
 
         try {
-            val response = apiService.getSearchedPhotos(searchKey, page)
+            val response = apiService.getPagePhotos(page)
             emit(Resource.Success(response))
         } catch (ex: HttpException) {
             if (ex.code() == 403)
@@ -26,6 +26,7 @@ class SearchRepository(
         } catch (ex: IOException) {
             emit(Resource.Failed(message = "Check your connection!"))
         }
+
     }
 
 }

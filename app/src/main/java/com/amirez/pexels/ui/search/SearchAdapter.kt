@@ -1,11 +1,11 @@
-package com.amirez.pexels.feature.search
+package com.amirez.pexels.ui.search
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.amirez.pexels.databinding.ItemPhotoBinding
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.data.PhotosData
 import com.bumptech.glide.RequestManager
 
 class SearchAdapter(

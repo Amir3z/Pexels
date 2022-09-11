@@ -1,4 +1,4 @@
-package com.amirez.pexels.feature
+package com.amirez.pexels.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

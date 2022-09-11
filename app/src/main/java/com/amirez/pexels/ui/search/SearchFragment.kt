@@ -1,4 +1,4 @@
-package com.amirez.pexels.feature.search
+package com.amirez.pexels.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.amirez.pexels.databinding.FragmentSearchBinding
-import com.amirez.pexels.model.PhotosData
-import com.amirez.pexels.model.SafeArgsPhoto
+import com.amirez.pexels.data.PhotosData
+import com.amirez.pexels.data.SafeArgsPhoto
 import com.amirez.pexels.utils.UIEvent
 import com.amirez.pexels.utils.isSearchKeyValid
 import com.bumptech.glide.RequestManager

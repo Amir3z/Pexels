@@ -1,11 +1,12 @@
-package com.amirez.pexels.feature.explore
+package com.amirez.pexels.ui.collection
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.amirez.pexels.model.PhotoState
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.data.Collection
+import com.amirez.pexels.data.PhotoState
+import com.amirez.pexels.data.repository.CollectionRepositoryImpl
 import com.amirez.pexels.utils.NetworkChecker
 import com.amirez.pexels.utils.Resource
 import com.amirez.pexels.utils.UIEvent
@@ -15,61 +16,63 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ExploreViewModel @Inject constructor(
-    private val repository: ExploreRepository,
+class CollectionViewModel @Inject constructor(
+    private val repository: CollectionRepositoryImpl,
     private val networkChecker: NetworkChecker
 ) : ViewModel() {
 
-    private val _photoState = MutableLiveData<PhotoState<List<PhotosData.Photo>>>(
+    private val _photoState = MutableLiveData<PhotoState<List<Collection.Media>>>(
         PhotoState(
             emptyList()
         )
     )
-    val photoState: LiveData<PhotoState<List<PhotosData.Photo>>> get() = _photoState
+    val photoState: LiveData<PhotoState<List<Collection.Media>>> get() = _photoState
 
     private val _eventFlow = MutableSharedFlow<UIEvent>()
     val eventFlow: SharedFlow<UIEvent> get() = _eventFlow.asSharedFlow()
 
-    private val arrayOfPhotos = arrayListOf<PhotosData.Photo>()
+    private val arrayOfPhotos = arrayListOf<Collection.Media>()
     private var page = 1
+    private var isFirstTime = true
 
-    init {
-        getPhotos()
+    fun getFirstPagePhotos(id: String) {
+        if (!isFirstTime)
+            return
+        getPhotos(id)
     }
 
-
-    fun getPhotos() {
+    fun getPhotos(id: String) {
         if (!networkChecker.isConnected) {
             UIEvent.ShowAlternativeView("Check your connection!")
             return
         }
         viewModelScope.launch {
-            repository.getPagePhotos(page).onEach { event ->
+            repository.getCollectionPhotos(id, page).onEach { event ->
                 when (event) {
                     is Resource.Success -> {
+                        isFirstTime = false
                         page++
                         _photoState.postValue(
                             photoState.value?.copy(
-                                data = event.data?.photos ?: emptyList(),
-                                isLoading = false
+                                isLoading = false,
+                                data = event.data?.media ?: emptyList()
                             )
                         )
-                        arrayOfPhotos.addAll(event.data?.photos ?: emptyList())
+                        arrayOfPhotos.addAll(event.data?.media ?: emptyList())
                     }
                     is Resource.Loading -> {
                         _photoState.postValue(
                             photoState.value?.copy(
-                                data = emptyList(),
-                                isLoading = true
+                                isLoading = true,
+                                data = emptyList()
                             )
                         )
                     }
                     is Resource.Failed -> {
-                        //if (page > 1) page--
                         _photoState.postValue(
                             photoState.value?.copy(
-                                data = emptyList(),
-                                isLoading = false
+                                isLoading = false,
+                                data = emptyList()
                             )
                         )
                         _eventFlow.emit(
@@ -78,15 +81,17 @@ class ExploreViewModel @Inject constructor(
                     }
                 }
             }.launchIn(this)
+
         }
     }
 
     fun saveAllOpenPagesInLiveData() {
         _photoState.postValue(
             PhotoState(
-                data = arrayOfPhotos,
-                isLoading = false
+                arrayOfPhotos,
+                false
             )
         )
     }
+
 }

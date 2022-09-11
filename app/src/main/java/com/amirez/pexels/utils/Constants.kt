@@ -1,7 +1,7 @@
 package com.amirez.pexels.utils
 
 import com.amirez.pexels.R
-import com.amirez.pexels.model.CollectionsData
+import com.amirez.pexels.data.CollectionsData
 
 const val API_KEY = "563492ad6f91700001000001798afed1ba2b45789fa55389a7f6dfbc"
 const val PEXELS_BASE_URL = "https://api.pexels.com/v1/"

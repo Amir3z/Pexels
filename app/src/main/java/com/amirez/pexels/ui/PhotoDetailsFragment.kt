@@ -1,4 +1,4 @@
-package com.amirez.pexels.feature
+package com.amirez.pexels.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.amirez.pexels.databinding.FragmentPhotoDetailsBinding
-import com.amirez.pexels.model.SafeArgsPhoto
+import com.amirez.pexels.data.SafeArgsPhoto
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.amirez.pexels.model
+package com.amirez.pexels.data
 
 data class CollectionsData(
     val title: String,

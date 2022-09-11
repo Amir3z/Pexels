@@ -1,7 +1,7 @@
-package com.amirez.pexels.model.network
+package com.amirez.pexels.data.network
 
-import com.amirez.pexels.model.Collection
-import com.amirez.pexels.model.PhotosData
+import com.amirez.pexels.data.Collection
+import com.amirez.pexels.data.PhotosData
 import com.amirez.pexels.utils.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Headers

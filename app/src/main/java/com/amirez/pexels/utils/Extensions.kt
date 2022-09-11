@@ -4,8 +4,8 @@ import android.content.Context
 import android.widget.EditText
 import android.widget.Toast
 import com.amirez.pexels.R
-import com.amirez.pexels.model.Collection
-import com.amirez.pexels.feature.search.SearchFragment
+import com.amirez.pexels.data.Collection
+import com.amirez.pexels.ui.search.SearchFragment
 
 fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

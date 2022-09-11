@@ -1,77 +1,87 @@
-package com.amirez.pexels.feature.collection
+package com.amirez.pexels.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.amirez.pexels.model.Collection
-import com.amirez.pexels.model.PhotoState
+import com.amirez.pexels.data.PhotoState
+import com.amirez.pexels.data.PhotosData
+import com.amirez.pexels.data.repository.SearchRepositoryImpl
 import com.amirez.pexels.utils.NetworkChecker
 import com.amirez.pexels.utils.Resource
 import com.amirez.pexels.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CollectionViewModel @Inject constructor(
-    private val repository: CollectionRepository,
+class SearchViewModel @Inject constructor(
+    private val repository: SearchRepositoryImpl,
     private val networkChecker: NetworkChecker
 ) : ViewModel() {
 
-    private val _photoState = MutableLiveData<PhotoState<List<Collection.Media>>>(
+    private val _photoState = MutableLiveData<PhotoState<List<PhotosData.Photo>>>(
         PhotoState(
             emptyList()
         )
     )
-    val photoState: LiveData<PhotoState<List<Collection.Media>>> get() = _photoState
+    val photoState: LiveData<PhotoState<List<PhotosData.Photo>>> get() = _photoState
 
     private val _eventFlow = MutableSharedFlow<UIEvent>()
     val eventFlow: SharedFlow<UIEvent> get() = _eventFlow.asSharedFlow()
 
-    private val arrayOfPhotos = arrayListOf<Collection.Media>()
-    private var page = 1
-    private var isFirstTime = true
+    private val _searchQuery = MutableLiveData("")
+    val searchQuery: LiveData<String> get() = _searchQuery
 
-    fun getFirstPagePhotos(id: String) {
-        if (!isFirstTime)
-            return
-        getPhotos(id)
+    private val arrayOfPhotos = arrayListOf<PhotosData.Photo>()
+    private var page = 1
+    private var searchJob: Job? = null
+
+    private var _isTyping: Boolean = false
+    val isTyping: Boolean get() = _isTyping
+
+    fun changeTypingStatus(isTyping: Boolean) {
+        if (isTyping) {
+            arrayOfPhotos.clear()
+            page = 1
+            _isTyping = true
+        } else
+            _isTyping = false
     }
 
-    fun getPhotos(id: String) {
-        if (!networkChecker.isConnected) {
-            UIEvent.ShowAlternativeView("Check your connection!")
-            return
-        }
-        viewModelScope.launch {
-            repository.getCollectionPhotos(id, page).onEach { event ->
+    fun getPhotos(query: String) {
+        _searchQuery.value = query
+        searchJob?.cancel()
+        searchJob = viewModelScope.launch {
+            delay(500L)
+            repository.getSearchedPhotos(query, page).onEach { event ->
                 when (event) {
                     is Resource.Success -> {
-                        isFirstTime = false
                         page++
                         _photoState.postValue(
                             photoState.value?.copy(
-                                isLoading = false,
-                                data = event.data?.media ?: emptyList()
+                                data = event.data?.photos ?: emptyList(),
+                                isLoading = false
                             )
                         )
-                        arrayOfPhotos.addAll(event.data?.media ?: emptyList())
+                        arrayOfPhotos.addAll(event.data?.photos ?: emptyList())
                     }
                     is Resource.Loading -> {
                         _photoState.postValue(
                             photoState.value?.copy(
-                                isLoading = true,
-                                data = emptyList()
+                                data = emptyList(),
+                                isLoading = true
                             )
                         )
                     }
                     is Resource.Failed -> {
                         _photoState.postValue(
                             photoState.value?.copy(
-                                isLoading = false,
-                                data = emptyList()
+                                data = emptyList(),
+                                isLoading = false
                             )
                         )
                         _eventFlow.emit(
@@ -80,7 +90,6 @@ class CollectionViewModel @Inject constructor(
                     }
                 }
             }.launchIn(this)
-
         }
     }
 
@@ -92,5 +101,4 @@ class CollectionViewModel @Inject constructor(
             )
         )
     }
-
 }

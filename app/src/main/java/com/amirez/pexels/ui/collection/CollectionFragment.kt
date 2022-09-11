@@ -1,4 +1,4 @@
-package com.amirez.pexels.feature.collection
+package com.amirez.pexels.ui.collection
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.amirez.pexels.R
 import com.amirez.pexels.databinding.FragmentCollectionBinding
-import com.amirez.pexels.model.Collection
-import com.amirez.pexels.model.SafeArgsPhoto
+import com.amirez.pexels.data.Collection
+import com.amirez.pexels.data.SafeArgsPhoto
 import com.amirez.pexels.utils.*
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint

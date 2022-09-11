@@ -1,4 +1,4 @@
-package com.amirez.pexels.model
+package com.amirez.pexels.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
